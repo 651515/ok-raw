@@ -1,10 +1,10 @@
-# ok-script-app
+# ok-raw
 
 English | [中文](README.md)
 
-ok-script-app is a Python automation project template built on [ok-script](https://github.com/ok-oldking/ok-script). It supports GUI automation apps for native Windows games, Android emulators, and browser games.
+ok-raw is a Python automation project built on [ok-script](https://github.com/ok-oldking/ok-script). It supports GUI automation apps for native Windows games, Android emulators, and browser games.
 
-The template includes task examples, OCR, template matching, configuration widgets, tests, i18n, EXE packaging, and update/release configuration. It is a starter project and feature demo, not a finished automation tool for a specific game.
+The project includes task examples, OCR, template matching, configuration widgets, tests, i18n, EXE packaging, and release configuration.
 
 ## Documentation
 

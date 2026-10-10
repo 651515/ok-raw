@@ -1,10 +1,10 @@
-# ok-script-app
+# ok-raw
 
 [English](README_en.md) | 中文
 
-ok-script-app 是一个基于 [ok-script](https://github.com/ok-oldking/ok-script) 的 Python 自动化项目模板，支持为 Windows 原生游戏、Android 模拟器和浏览器游戏创建带 GUI 的自动化应用。
+ok-raw 是一个基于 [ok-script](https://github.com/ok-oldking/ok-script) 的 Python 自动化项目，支持为 Windows 原生游戏、Android 模拟器和浏览器游戏创建带 GUI 的自动化应用。
 
-这个仓库提供任务示例、OCR、模板匹配、配置控件、测试、i18n、EXE 打包和更新发布配置。它是起步工程和功能演示，不是某个具体游戏的自动化成品。
+这个仓库提供任务示例、OCR、模板匹配、配置控件、测试、i18n、EXE 打包和更新发布配置。
 
 ## 文档
 

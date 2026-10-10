@@ -1,7 +1,7 @@
-site_name: ok-script-app
+site_name: ok-raw
 site_description: Build Windows, Android emulator, and browser automation apps with ok-script.
-repo_name: ok-oldking/ok-script-app
-repo_url: https://github.com/ok-oldking/ok-script-app
+repo_name: 651515/ok-raw
+repo_url: https://github.com/651515/ok-raw
 edit_uri: edit/master/docs/
 
 docs_dir: docs
