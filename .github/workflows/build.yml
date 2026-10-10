@@ -23,8 +23,8 @@ jobs:
           [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
           git config --global core.autocrlf false
           git config --global core.eol lf
-          git config --global user.email "${{ secrets.GITHUB_ACTOR }}@users.noreply.github.com"
-          git config --global user.name "${{ secrets.GITHUB_ACTOR }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
 
       - uses: actions/checkout@v4
         with:
