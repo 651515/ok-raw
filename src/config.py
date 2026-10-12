@@ -1,3 +1,4 @@
+from math import fabs
 import os
 
 import numpy as np
@@ -61,7 +62,7 @@ def make_bottom_right_black(frame): #可选. 某些游戏截图时遮挡UID使�
         return frame
 
 config = {
-    'custom_tasks':True, # enable creating and editing custom tasks
+    'custom_tasks':False, # enable creating and editing custom tasks
     'debug': False,  # Optional, default: False
     'gui': gui_config,
     'config_folder': 'configs', #最好不要修改
@@ -79,14 +80,20 @@ config = {
         }
     },
     'windows': {  # Windows游戏请填写此设置
-        'exe': ['evelauncher.exe'],
-        # optional, if set, will search the exe only
-        # 'hwnd_class': 'UnrealWindow', #增加重名检查准确度
+        # 进程窗口白名单映射: {进程名: 可选的窗口类过滤(str/list/正则, None或''=不过滤类名)}
+        'exe': {
+            'evelauncher.exe': 'Qt5QWindowIcon',  # 启动器只认其主窗口类, 顺带排除 SysShadow 阴影窗
+            'exefile.exe': 'trinityWindow',       # 游戏客户端
+        },
+        'calculate_pc_exe_path': r'E:\EVE\Launcher\evelauncher.exe',  # 强制启动器路径, 防止设备刷新出的 exefile 路径被用于直启游戏客户端
+        'multi_device': True, #原生多设备模式: 每个匹配窗口单独一个条目, 可在选择窗口列表分别选用
+        #'exclude_hwnd_class': ['SysShadow'], #额外全局排除的窗口类(支持列表/正则)
+        'device_refresh_interval': 3, #设备列表定时自动刷新秒数, 0=关闭(仅手动点刷新按钮)
         'interaction': ['Pynput', 'PostMessage', 'Genshin', 'PyDirect','ForegroundPostMessage'], # Genshin:某些操作可以后台, 部分游戏支持 PostMessage:可后台点击, 极少游戏支持 ForegroundPostMessage:前台使用PostMessage Pynput/PyDirect:仅支持前台使用
         'capture_method': ['WGC', 'BitBlt_RenderFull', 'BitBlt'],  # Windows版本支持的话, 优先使用WGC, 否则使用BitBlt_Full. 支持的capture有 BitBlt, WGC, BitBlt_RenderFull, DXGI
         'check_hdr': True, #当用户开启AutoHDR时候提示用户, 但不禁止使用
-        'force_no_hdr': True, #True=当用户开启AutoHDR时候禁止使用
-        'require_bg': True # 要求使用后台截图
+        'force_no_hdr': False, #True=当用户开启AutoHDR时候禁止使用
+        'require_bg': False # 要求使用后台截图
     },
     #'adb': {  # 模拟器或Android设备请填写此设置, mumu模拟器使用原生截图和input,速度极快. 其他模拟器和真机使用adb,截图速度较慢
         # optional, if set, will start the pacakge and ensure installed
@@ -97,11 +104,11 @@ config = {
     #     'nick': 'Browser',
     #     'resolution': (1280, 720),
     # },
-    'start_timeout': 120,  # default 60
+    'start_timeout': 10,  # default 60
     'supported_resolution': {
         'ratio': '16:9', #支持的游戏分辨率
-        'min_size': (1280, 720), #支持的最低游戏分辨率
-        'resize_to': [(2560, 1440), (1920, 1080), (1600, 900), (1280, 720)], #可选, 如果非16:9自动缩放为 resize_to
+        'min_size': (1920, 1080), #支持的最低游戏分辨率
+        'resize_to': [(1920, 1080)], #可选, 如果非16:9自动缩放为 resize_to
     },
     'links': { # 关于里显示的链接, 可选
             'default': {
@@ -126,5 +133,6 @@ config = {
     'onetime_tasks': [  # 用户点击触发的任务
         ["src.tasks.MyOneTimeTask", "MyOneTimeTask"],
         ["ok", "DiagnosisTask"],
+        ["src.tasks.LoginTest", "LoginTest"],
     ],
 }
